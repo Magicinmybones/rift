@@ -229,9 +229,35 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
   .eyebrow{font-size:max(calc(var(--v)*10.5),8.5px);letter-spacing:.02em}
   .headline{margin-top:calc(var(--v)*9);font-size:calc(var(--v)*33);line-height:.98;letter-spacing:.024em}
 }
+/* One opening sequence. Backwards fill prevents a first-frame flash; after each
+   animation finishes the authored styles take over with no motion left running. */
 @media (prefers-reduced-motion:no-preference){
-  .node-core{animation:pulse 3.2s ease-in-out infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 0 var(--ng2,6px) rgba(255,107,28,.45)}50%{box-shadow:0 0 calc(var(--ng2,6px)*2.4) rgba(255,107,28,.7)}}
+  .nav .brand{animation:rift-soft .52s cubic-bezier(.22,1,.36,1) .04s backwards}
+  .nav-links{animation:rift-soft .5s cubic-bezier(.22,1,.36,1) .16s backwards}
+  .nav .cta{animation:rift-soft .52s cubic-bezier(.22,1,.36,1) .22s backwards}
+  .rift{animation:rift-title .86s cubic-bezier(.16,1,.3,1) .23s backwards}
+  .terrain-tag{animation:rift-soft .55s cubic-bezier(.22,1,.36,1) .72s backwards}
+  .lede{animation:rift-soft .62s cubic-bezier(.22,1,.36,1) .84s backwards}
+  .rock-wrap{animation:rift-rock .82s cubic-bezier(.16,1,.3,1) .94s backwards}
+  .stat-1{animation:rift-card .65s cubic-bezier(.22,1,.36,1) 1.05s backwards}
+  .stat-2{animation:rift-card .65s cubic-bezier(.22,1,.36,1) 1.18s backwards}
+  .copy{animation:rift-soft .62s cubic-bezier(.22,1,.36,1) 1.31s backwards}
+  @keyframes rift-soft{
+    from{opacity:0;transform:translate3d(0,8px,0)}
+    to{opacity:1;transform:none}
+  }
+  @keyframes rift-title{
+    from{opacity:0;transform:translate3d(0,.13em,0);clip-path:inset(100% 0 0)}
+    to{opacity:1;transform:none;clip-path:inset(0)}
+  }
+  @keyframes rift-rock{
+    from{opacity:0;transform:translate3d(0,12px,0) scale(.985)}
+    to{opacity:1;transform:none}
+  }
+  @keyframes rift-card{
+    from{opacity:0;transform:translate3d(0,9px,0);clip-path:inset(0 0 16% 0)}
+    to{opacity:1;transform:none;clip-path:inset(0)}
+  }
 }
 </style>
 </head>
